@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { totalQuantity } = useSelector(state => state.cart);
+
   return (
     <div className="flex items-center justify-center pt-5 ">
       <Link to={"/"} className="cursor-pointer">
@@ -14,15 +17,15 @@ const Navbar = () => {
       </Link>
       <ul className="flex flex-1 items-center justify-center gap-10 font-medium">
         <Link to={"/"}>
-          <li className="text-slate-600 cursor-pointer text-2xl font-semibold">Home</li>
+          <li className="text-slate-600 cursor-pointer text-xl font-semibold">Home</li>
         </Link>
         <Link to={"/shop"}>
-          <li className="text-slate-600 cursor-pointer text-2xl font-semibold">Shop</li>
+          <li className="text-slate-600 cursor-pointer text-xl font-semibold">Shop</li>
         </Link>
         <Link to={"/cart"}>
           <li className="relative">
-            <IoCartOutline size={50} />
-            <p className="absolute -bottom-1 -right-2 h-7 w-7 text-xl bg-red-500 text-white rounded-full text-center leading-7">0</p>
+            <IoCartOutline size={30} />
+            <p className="absolute -bottom-1 -right-2 h-4 w-4 text-sm bg-red-500 text-white rounded-full text-center leading-4">{totalQuantity}</p>
           </li>
         </Link>
       </ul>
