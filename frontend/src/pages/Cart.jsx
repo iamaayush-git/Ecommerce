@@ -27,7 +27,7 @@ const Cart = () => {
             <td className="px-6 py-3 font-semibold text-sm text-gray-700 ">{item.title}</td>
             <td className="px-6 py-3 font-semibold text-sm text-gray-700 text-center ">{item.quantity}</td>
             <td className="px-6 py-3 font-semibold text-sm text-gray-700 text-center ">${item.price}</td>
-            <td className="px-6 py-3 font-semibold text-sm text-gray-700 text-center ">${item.quantity * item.price}</td>
+            <td className="px-6 py-3 font-semibold text-sm text-gray-700 text-center ">${(item.quantity * item.price).toFixed(2)}</td>
             <td className="px-6 py-3 font-semibold text-sm text-gray-700 flex justify-center gap-2">
               <button className="px-3 py-2 font-semibold text-white bg-green-500 rounded-md cursor-pointer">Update</button>
               <button className="px-3 py-2 font-semibold text-white bg-red-500 rounded-md cursor-pointer">Delete</button>
@@ -41,7 +41,7 @@ const Cart = () => {
       )}
     </table>
     <div className="w-[80%] shadow-xl p-5 rounded-lg bg-gray-100 text-blue-500 text-xl font-semibold text-right mt-15">
-      <p className="">Grand Total: ${totalPrice}</p>
+      <p className="">Grand Total: ${totalPrice.toFixed(2)}</p>
       <button className="p-3 bg-blue-500 text-white mt-5 rounded-md cursor-pointer">Order Now</button>
     </div>
   </div>;
