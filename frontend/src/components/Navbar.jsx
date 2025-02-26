@@ -22,6 +22,9 @@ const Navbar = () => {
         <Link to={"/shop"}>
           <li className="text-slate-600 cursor-pointer text-xl font-semibold">Shop</li>
         </Link>
+        <Link to={"/wishlist"}>
+          <li className="text-slate-600 cursor-pointer text-xl font-semibold">Wishlist</li>
+        </Link>
         <Link to={"/cart"}>
           <li className="relative">
             <IoCartOutline size={30} />

@@ -10,19 +10,21 @@ const Shop = () => {
   console.log(allProducts);
 
   const categoryMapping = {
-    "men's clothing": "men",
-    "women's clothing": "women",
-    "electronics": "electronics",
-    "jewelery": "jewelery",
+    men: "men's clothing",
+    women: "women's clothing",
+    electronics: "electronics",
+    jewelery: "jewelery",
   };
-
   useEffect(() => {
     setFilterProduct(allProducts);
   }, [])
 
   useEffect(() => {
     if (selectedCategory.length > 0) {
-      setFilterProduct(allProducts.filter(product => selectedCategory.includes(categoryMapping[product.category])))
+      setFilterProduct(
+        allProducts.filter((product) =>
+          selectedCategory.some((selected) => categoryMapping[selected] === product.category)
+        ))
     }
     else {
       setFilterProduct(allProducts)
@@ -35,7 +37,7 @@ const Shop = () => {
 
   return (
     <div className='mt-10 '>
-      <h2 className='text-2xl font-semibold text-blue-500'>Please Select categories that you want.</h2>
+      <h2 className='text-xl font-semibold text-blue-500'>Please Select categories that you want.</h2>
       <div className='flex  justify-center gap-10 mt-10'>
         <div className='flex flex-col gap-2 '>
           {categories.map((category) => {
