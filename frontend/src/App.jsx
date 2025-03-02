@@ -8,9 +8,11 @@ import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import Wishlist from "./pages/Wishlist";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <div className="w-[90%] mx-auto">
+      <ToastContainer />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

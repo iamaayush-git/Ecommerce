@@ -4,6 +4,7 @@ import productSlice from "./slices/productSlice";
 import wishlistSlice from "./slices/wishlistSlice";
 import cartSlice from "./slices/cartSlice";
 import storage from "redux-persist/lib/storage"
+import userSlice from "./slices/userSlice";
 
 const productPersistconfig = {
   key: 'product',
@@ -19,7 +20,8 @@ const wishlistPersisConfig = {
 const rootReducer = combineReducers({
   product: persistReducer(productPersistconfig, productSlice),
   wishlist: persistReducer(wishlistPersisConfig, wishlistSlice),
-  cart: cartSlice
+  cart: cartSlice,
+  loggedInUser: userSlice
 });
 
 const store = configureStore({
