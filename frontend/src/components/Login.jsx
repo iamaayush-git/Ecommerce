@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../utils/toastify";
 import { setLogin } from "../redux/slices/userSlice.js";
 import { useDispatch } from "react-redux"
@@ -25,11 +24,11 @@ const Login = () => {
       if (response.data.success === true) {
         console.log(response.data);
 
-        dispatch(setLogin({ user: response.data.user.name, token: response.data.token }))
+        dispatch(setLogin({ user: response.data.user.name, email: response.data.user.email, token: response.data.token }))
         handleSuccess(response.data.message);
         setTimeout(() => {
           navigate('/');
-        }, 1500);
+        }, 700);
       }
     } catch (error) {
       handleError(error.response.data.message);

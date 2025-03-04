@@ -1,18 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../redux/slices/userSlice";
 import { handleSuccess } from "../utils/toastify";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const { totalQuantity } = useSelector(state => state.cart);
-  const { userName, loginStatus } = useSelector(state => state.loggedInUser)
+  const { userName, loginStatus, email } = useSelector(state => state.loggedInUser)
 
   const handleLogout = () => {
     dispatch(setLogout())
     handleSuccess("Logout successful");
+    setTimeout(() => {
+      navigate('/')
+    }, 700);
   }
 
   return (
@@ -47,7 +52,7 @@ const Navbar = () => {
 
       </ul>
       {
-        loginStatus === "false" ? <div className="flex gap-5">
+        loginStatus === "false" && <div className="flex gap-5">
           <Link to={"/auth/login"}>
             <button className="bg-black text-white px-3 py-2 rounded-md font-medium cursor-pointer">
               Login
@@ -58,9 +63,19 @@ const Navbar = () => {
               SignUp
             </button>
           </Link>
-        </div> : (<button onClick={handleLogout} className="bg-black text-white px-3 py-2 rounded-md font-medium cursor-pointer"> Logout </button>)
+        </div>
       }
-      {userName && <h2 className="ml-5 text-lg font-semibold">Namaste, {userName}</h2>}
+      {loginStatus === "true" &&
+        <div className="relative w-[15vw] group ml-5 text-lg font-semibold flex items-center flex-col">
+          <Link to="/profile" ><CgProfile className=" cursor-pointer" size={40} /></Link>
+          <div className="w-full hidden absolute top-11 group-hover:block ">
+            <div className="w-full bg-gray-100 flex flex-col items-center justify-center gap-1 text-sm border rounded-md px-3 py-2">
+              <p className="text-sm font-sans"><span className="font-semibold" >Name:</span> {userName}</p>
+              <p className="text-sm font-sans"><span className="font-semibold" >Email:</span> {email}</p>
+              <button onClick={handleLogout} className=" bg-transparent text-black px-2 py-1 rounded-md text-sm cursor-pointer"> Logout </button>
+            </div>
+          </div>
+        </div>}
     </div >
   );
 };
