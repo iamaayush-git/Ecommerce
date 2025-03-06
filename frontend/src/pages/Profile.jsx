@@ -4,6 +4,10 @@ import { useSelector } from 'react-redux'
 const Profile = () => {
   const { userName, email } = useSelector(state => state.loggedInUser);
 
+  const updateHandler = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <form className='text-center' action="">
       <h2 className='mt-10 font-semibold text-2xl text-blue-500'>Update Your Details</h2>
@@ -16,7 +20,7 @@ const Profile = () => {
           <label htmlFor="email">Email:</label>
           <input className='w-full border rounded-sm outline-none px-2 py-2' type="email" defaultValue={email} id="email" />
         </div>
-        <button className='bg-blue-500 text-white px-3 py-2 rounded-md cursor-pointer text-center mx-auto font-semibold ' type='submit'>Update</button>
+        <button onClick={updateHandler} className='bg-blue-500 text-white px-3 py-2 rounded-md cursor-pointer text-center mx-auto font-semibold ' type='submit'>Update</button>
       </div>
     </form>
   )

@@ -3,6 +3,7 @@ import dotenv, { config } from "dotenv";
 import userRouter from "./user/userRouter.js";
 import errorHandler from "./middleware/errorMiddleware.js"
 import cors from "cors"
+import productRouter from "./product/productRouter.js";
 
 dotenv.config();
 const app = express();
@@ -11,6 +12,7 @@ app.use(cors())
 
 // routes
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter)
 
 app.use(errorHandler)
 
